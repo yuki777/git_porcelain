@@ -12,7 +12,7 @@ function git_porcelain -d "Return short git status"
     set -l modified_u (printf '%s' "$gitstatus" | grep -oE "[ACDRM ]M " | wc -l | grep -oEi '[1-9][0-9]*') 
     set -l deleted_u (printf '%s' "$gitstatus" | grep -oE "[AMCR ]D " |wc -l| grep -oEi '[1-9][0-9]*')
 
-    set -l untracked (printf '%s' "$gitstatus" | grep "?? " | wc -l | grep -oEi '[1-9][0-9]*')    
+    set -l untracked (printf '%s' "$gitstatus" | grep -oE "\?\? " | wc -l | grep -oEi '[1-9][0-9]*')    
 
     if not test -z $added_s
       set output $output (__echo_git $added_s "A" green)
@@ -47,6 +47,7 @@ function git_porcelain -d "Return short git status"
     set output $output " "
     
     if not test -z $untracked
+      debug $untracked
       set output $output (echo -n -s $untracked (set_color -o black) "U" (set_color normal))
     end
     
