@@ -1,8 +1,12 @@
 function git_porcelain -d "Return short git status"
   set -l gitstatus (git status --porcelain 2> /dev/null | cut -c-3)
+  set -l STAGED (set_color green)
+  set -l UNSTAGED (set_color red)
+  set -l UNTRACKED (set_color -o black)
+  set -l NORMAL (set_color normal)
 
   if git_is_repo
-    set -l output (set_color normal)
+    set -l output $NORMAL
     set -l added_s (printf '%s' "$gitstatus" | grep -oE "A[MCDR ] " | wc -l | grep -oEi '[1-9][0-9]*')
     set -l modified_s (printf '%s' "$gitstatus" | grep -oE "M[ACDRM ] " | wc -l | grep -oEi '[1-9][0-9]*')
     set -l deleted_s (printf '%s' "$gitstatus" | grep -oE "D[AMCR ] " | wc -l | grep -oEi '[1-9][0-9]*')
@@ -14,41 +18,40 @@ function git_porcelain -d "Return short git status"
 
     set -l untracked (printf '%s' "$gitstatus" | grep -oE "\?\? " | wc -l | grep -oEi '[1-9][0-9]*')    
 
-    if not test -z $added_s
-      set output $output (__echo_git $added_s "A" green)
+    if test ! -z "$added_s"
+      set output $output (echo -n -s "$added_s" $STAGED "A" $NORMAL)
     end
     
-    if not test -z $modified_s
-      set output $output (__echo_git $modified_s "M" green)
+    if test ! -z "$modified_s"
+      set output $output (echo -n -s "$modified_s" $STAGED "M" $NORMAL)
     end
     
-    if not test -z $deleted_s
-      set output $output (__echo_git $deleted_s "D" green)
+    if test ! -z "$deleted_s"
+      set output $output (echo -n -s "$deleted_s" $STAGED "D" $NORMAL)
     end
 
-    if not test -z $renamed_s
-      set output $output (__echo_git $renamed_s "R" green)
+    if test ! -z "$renamed_s"
+      set output $output (echo -n -s "$renamed_s" $STAGED "R" $NORMAL)
     end
 
-    if not test -z $copied_s
-      set output $output (__echo_git $copied_s "C" green)
+    if test ! -z "$copied_s"
+      set output $output (echo -n -s "$copied_s" $STAGED "C" $NORMAL)
     end
 
     set output $output " "
     
-    if not test -z $modified_u
-      set output $output (__echo_git $modified_u "M" red)      
+    if test ! -z "$modified_u"
+      set output $output (echo -n -s "$modified_u" $UNSTAGED "M" $NORMAL)      
     end
     
-    if not test -z $deleted_u
-      set output $output (__echo_git $deleted_u "D" red)
+    if test ! -z "$deleted_u"
+      set output $output (echo -n -s "$deleted_u" $UNSTAGED "D" $NORMAL)
     end
     
     set output $output " "
     
-    if not test -z $untracked
-      debug $untracked
-      set output $output (echo -n -s $untracked (set_color -o black) "U" (set_color normal))
+    if test ! -z "$untracked"
+      set output $output (echo -n -s $untracked $UNTRACKED "U" $NORMAL)
     end
     
     echo -n -s $output
