@@ -23,13 +23,13 @@ function git_porcelain
     echo -n -s $vars[5] $STAGED "C" $NORMAL 
   end
   if test ! $vars[6] -eq 0 -a $vars[7] -eq 0
-    echo -n -s " "
-    if test ! $vars[6] -eq 0
-      echo -n -s $vars[6] $UNSTAGED "M" $NORMAL
-    end
-    if test ! $vars[7] -eq 0
-      echo -n -s $vars[7] $UNSTAGED "D" $NORMAL
-    end
+    echo -n -s " "    
+  end
+  if test ! $vars[6] -eq 0
+    echo -n -s $vars[6] $UNSTAGED "M" $NORMAL
+  end
+  if test ! $vars[7] -eq 0
+    echo -n -s $vars[7] $UNSTAGED "D" $NORMAL
   end
   if test ! $vars[8] -eq 0
     echo -n -s " " $vars[8] $UNTRACKED "U" $NORMAL
