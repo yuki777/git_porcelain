@@ -62,7 +62,7 @@ function git_porcelain
     end
   end
 
-  if test ! $vars[6] -eq 0 -a $vars[7] -eq 0
+  if test $vars[6] -gt 0 -o $vars[7] -gt 0
     if test 0 -eq $empty
       echo -n -s " "
     end
@@ -74,7 +74,7 @@ function git_porcelain
       if contains -- no-color $opts
         echo -n -s $vars[$i] $legend[$i]
       else
-        echo -n -s $vars[$i] $staged $legend[$i] $normal
+        echo -n -s $vars[$i] $unstaged $legend[$i] $normal
       end
     end
   end
