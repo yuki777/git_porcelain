@@ -6,30 +6,21 @@ function git_porcelain
   set -l NORMAL (set_color normal)
 
   git status --porcelain 2> /dev/null | awk -f $p_path/git_porce.awk | read -a vars
+  set LETTERS "A" "M" "D" "R" "C" "M" "D" "U"
+  
   echo -n -s $NORMAL
-  if test ! $vars[1] -eq 0
-    echo -n -s $vars[1] $STAGED "A" $NORMAL
-  end
-  if test ! $vars[2] -eq 0
-    echo -n -s $vars[2] $STAGED "M" $NORMAL
-  end
-  if test ! $vars[3] -eq 0
-    echo -n -s $vars[3] $STAGED "D" $NORMAL
-  end
-  if test ! $vars[4] -eq 0
-    echo -n -s $vars[4] $STAGED "R" $NORMAL
-  end
-  if test ! $vars[5] -eq 0
-    echo -n -s $vars[5] $STAGED "C" $NORMAL 
+  for i in (seq 5)
+    if test ! $vars[$i] -eq 0
+      echo -n -s $vars[$i] $STAGED $LETTERS[$i] $NORMAL
+    end
   end
   if test ! $vars[6] -eq 0 -a $vars[7] -eq 0
     echo -n -s " "    
   end
-  if test ! $vars[6] -eq 0
-    echo -n -s $vars[6] $UNSTAGED "M" $NORMAL
-  end
-  if test ! $vars[7] -eq 0
-    echo -n -s $vars[7] $UNSTAGED "D" $NORMAL
+  for i in (seq 6 7)
+    if test ! $vars[$i] -eq 0
+      echo -n -s $vars[$i] $UNSTAGED $LETTERS[$i] $NORMAL
+    end
   end
   if test ! $vars[8] -eq 0
     echo -n -s " " $vars[8] $UNTRACKED "U" $NORMAL
