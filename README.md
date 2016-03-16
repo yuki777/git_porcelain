@@ -7,6 +7,16 @@ User-friendly [Git status] output information. Use it in your prompts!
 
 ![git_porcelain]
 
+## Usage
+Typically you'll store the result in a variable to be output later:
+```
+set gitporcelain (git_porcelain)
+...
+printf "blah blah %s" $gitporcelain
+```
+
+git_porcelain comes with colours by default. To disable, use `git_porcelain -C`.
+
 ## Install
 
 With [Fisherman]
