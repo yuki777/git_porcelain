@@ -47,7 +47,7 @@ function git_porcelain
 
   set legend "A" "M" "D" "R" "C" "M" "D" "U"
 
-  if contains -- no-color $opts
+  if not contains -- no-color $opts
     echo -n -s $normal
   end
 
