@@ -55,8 +55,8 @@ MIT
 
 [slack-link]: https://fisherman-wharf.herokuapp.com/
 [slack-badge]: https://img.shields.io/badge/slack-join%20the%20chat-00B9FF.svg?style=flat-square
-[travis-badge]: https://travis-ci.org/jethrokuan/git_porcelain.svg?branch=master
-[travis-link]: https://travis-ci.org/jethrokuan/git_porcelain
+[travis-badge]: https://travis-ci.org/fisherman/git_porcelain.svg?branch=master
+[travis-link]: https://travis-ci.org/fisherman/git_porcelain
 [Fisherman]: https://github.com/fisherman/fisherman
 [git-radar]:https://github.com/michaeldfallen/git-radar
 
