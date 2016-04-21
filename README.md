@@ -3,9 +3,17 @@
 
 # Git_porcelain
 
-User-friendly [Git status] output information. Use it in your prompts!
+User-friendly [Git status] output information. Use it in prompts! Inspired and adapted from [git-radar].
 
 ![git_porcelain]
+
+## Install
+
+With [Fisherman]
+
+```
+fisher i git_porcelain
+```
 
 ## Usage
 Typically you'll store the result in a variable to be output later:
@@ -15,15 +23,29 @@ set gitporcelain (git_porcelain)
 printf "blah blah %s" $gitporcelain
 ```
 
-git_porcelain comes with colours by default. To disable, use `git_porcelain -C`.
+ > git_porcelain comes with colours by default. To disable, use `git_porcelain -C`.
 
-## Install
+## Legend
+### Symbols:
+Symbol  | Meaning
+--------|--------
+A       | A file has been Added
+D       | A file has been Deleted
+M       | A file has been Modified
+R       | A file has been Renamed
+C       | A file has been Copied
+U       | A file is untracked
 
-With [Fisherman]
+### Colors:
+Color   | Meaning
+--------|--------
+Green   | Staged and ready to be committed (i.e. you have done a `git add`)
+Red     | Unstaged, you'll need to `git add` them before you can commit
+Grey    | Untracked, these are new files git is unaware of
+Yellow  | Conflicted, these need resolved before they can be committed
 
-```
-fisher i git_porcelain
-```
+## Prompts using git_porcelain
+1. [jetty]
 
 ## License
 MIT
@@ -36,3 +58,6 @@ MIT
 [travis-badge]: https://travis-ci.org/jethrokuan/git_porcelain.svg?branch=master
 [travis-link]: https://travis-ci.org/jethrokuan/git_porcelain
 [Fisherman]: https://github.com/fisherman/fisherman
+[git-radar]:https://github.com/michaeldfallen/git-radar
+
+[jetty]:https://github.com/jethrokuan/jetty
