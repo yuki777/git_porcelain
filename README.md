@@ -25,7 +25,7 @@ set gitporcelain (git_porcelain)
 printf "blah blah %s" $gitporcelain
 ```
 
-> git_porcelain comes with colours by default. To disable, use `git_porcelain -C`.
+> git_porcelain comes with colours by default. To disable colors, use `git_porcelain -C`.
 
 ## Legend
 
