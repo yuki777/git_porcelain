@@ -6,13 +6,12 @@ function git_porcelain
   set -l opts ""
   set -l empty 1
 
-  getopts $argv | while read -l 1 2
-    switch $1
-      case C no-color
+  if set -q argv[1]
+    switch "$argv[1]"
+      case "-C" "--no-color"
         set opts "no-color"
-        break
       case \*
-        printf  "%s is not a valid option." $1
+        printf "%s is not a valid option." "$argv[1]"
         return 1
     end
   end
