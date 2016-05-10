@@ -57,8 +57,8 @@ Yellow  | Conflicted, these need resolved before they can be committed
 [git_porcelain]: http://i.imgur.com/EvA0dNI.png
 
 [slack-link]: https://fisherman-wharf.herokuapp.com/
-[slack-badge]: https://img.shields.io/badge/slack-join%20the%20chat-00B9FF.svg?style=flat-square
-[travis-badge]: https://img.shields.io/travis/fisherman/git_porcelain.svg?style=flat-square
+[slack-badge]: https://fisherman-wharf.herokuapp.com/badge.svg
+[travis-badge]: https://img.shields.io/travis/fisherman/git_porcelain.svg
 [travis-link]: https://travis-ci.org/fisherman/git_porcelain
 [fisherman]: https://github.com/fisherman/fisherman
 [git-radar]:https://github.com/michaeldfallen/git-radar
