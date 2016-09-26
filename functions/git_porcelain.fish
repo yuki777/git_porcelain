@@ -92,4 +92,18 @@ function git_porcelain
   # Current hash
   set -l current_hash (git rev-parse HEAD|cut -c-7)
   echo -n -s " $current_hash"
+
+  # Branch (e.g. origin/master)
+  set -l symbolic_ref (git symbolic-ref -q HEAD)
+  set -l tracking_branch (git for-each-ref --format='%(upstream:short)' "$symbolic_ref" 2> /dev/null)
+
+  # Ahead and Behind
+  set -l ahead_count  (git rev-list --right-only --count "$tracking_branch"...HEAD)
+  set -l behind_count (git rev-list --left-only  --count "$tracking_branch"...HEAD)
+  if test ! $ahead_count -eq 0
+    echo -n -s " $ahead_count=>"
+  end
+  if test $behind_count -eq 0
+    echo -n -s " <=$behind_count"
+  end
 end
