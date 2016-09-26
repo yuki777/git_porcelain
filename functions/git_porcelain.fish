@@ -90,7 +90,7 @@ function git_porcelain
   end
 
   # Current hash
-  set -l current_hash (git rev-parse HEAD|cut -c-7)
+  set -l current_hash (git rev-parse HEAD 2>/dev/null|cut -c-7)
   echo -n -s " $current_hash"
 
   # Branch (e.g. origin/master)
