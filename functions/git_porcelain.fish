@@ -103,7 +103,7 @@ function git_porcelain
   if test ! $ahead_count -eq 0
     echo -n -s " $ahead_count=>"
   end
-  if test $behind_count -eq 0
+  if test ! $behind_count -eq 0
     echo -n -s " <=$behind_count"
   end
 end
