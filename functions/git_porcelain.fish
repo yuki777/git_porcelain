@@ -88,4 +88,8 @@ function git_porcelain
       echo -n -s $vars[8] $untracked "U" $normal
     end
   end
+
+  # Current hash
+  set -l current_hash (git rev-parse HEAD|cut -c-7)
+  echo -n -s " $current_hash"
 end
