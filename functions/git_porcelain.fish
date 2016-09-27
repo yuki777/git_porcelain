@@ -89,6 +89,12 @@ function git_porcelain
     end
   end
 
+  # Stash
+  set -l stash_count (git stash list 2>/dev/null | wc -l | tr -d ' ')
+  if test ! $stash_count -eq 0
+    echo -n -s " {$stash_count}"
+  end
+
   # Current hash
   set -l current_hash (git rev-parse HEAD 2>/dev/null|cut -c-7)
   echo -n -s " $current_hash"
